@@ -29,7 +29,13 @@ function paidStudentsToEnroll() {
 }
 
 function remindUnpaid(recordIds) {
-  // TODO
+  const unpaidStudentRemind = recordIds.filter(function filterStudentsId(id){
+		const student = studentRecords.find(function findStudent(student){
+			return id == student.id
+		})
+		return !student.paid
+	})
+	printRecords(unpaidStudentRemind)
 }
 
 // ********************************
