@@ -40,7 +40,7 @@ function remindUnpaid(recordIds) {
 
 // ********************************
 
-var currentEnrollment = [410, 105, 664, 375];
+var currentEnrollment = [410, 105, 664, 375,888];
 
 var studentRecords = [
   { id: 313, name: "Frank", paid: true },
