@@ -1,13 +1,3 @@
-// function getStudentFromIds(studentId, studentArr) {
-// 	var sortedArr = studentArr.sort(function sortNames(a,b) {
-// 		return a.name.localeCompare(b.name)
-// 	});
-// 	var findArr = sortedArr.find(function getId(arrId){
-// 		return arrId.id == studentId
-// 	})
-// 	console.log(` ${findArr.name} (${findArr.id}): ${findArr.paid == true ? "Paid" : "Not Paid"}`)
-// 	return findArr
-// }
 function printRecords(recordIds) {
 	const printRecord = recordIds.map(function studentsId(id) {
 		return studentRecords.find(function findRecord(record){
@@ -29,7 +19,13 @@ function printRecords(recordIds) {
 }
 
 function paidStudentsToEnroll() {
-  // TODO
+  const paidButNotEnrolled = studentRecords.filter(function paidNotEnrolled(record){
+		return record.paid && !currentEnrollment.includes(record.id)
+	}).map(function studentsId(recordId){
+		return recordId.id
+	})
+	console.log(paidButNotEnrolled);
+	return [...currentEnrollment, ...paidButNotEnrolled];
 }
 
 function remindUnpaid(recordIds) {
@@ -38,7 +34,7 @@ function remindUnpaid(recordIds) {
 
 // ********************************
 
-var currentEnrollment = [410, 105, 664, 375,999];
+var currentEnrollment = [410, 105, 664, 375];
 
 var studentRecords = [
   { id: 313, name: "Frank", paid: true },
@@ -55,11 +51,9 @@ var studentRecords = [
 printRecords(currentEnrollment);
 console.log("----");
 currentEnrollment = paidStudentsToEnroll();
-// printRecords(currentEnrollment);
-// console.log("----");
-// remindUnpaid(currentEnrollment);
-// var result = getStudentFromIds(313, studentRecords);
-// console.log(result);
+printRecords(currentEnrollment)
+console.log("----");
+remindUnpaid(currentEnrollment);
 
 /*
 	Bob (664): Not Paid
