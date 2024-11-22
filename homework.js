@@ -1,15 +1,31 @@
-function getStudentFromIds(studentId, studentArr) {
-	var sortedArr = studentArr.sort(function sortNames(a,b) {
-		return a.name.localeCompare(b.name)
-	});
-	var findArr = sortedArr.find(function getId(arrId){
-		return arrId.id == studentId
-	})
-	console.log(` ${findArr.name} (${findArr.id}): ${findArr.paid == true ? "Paid" : "Not Paid"}`)
-	return findArr
-}
+// function getStudentFromIds(studentId, studentArr) {
+// 	var sortedArr = studentArr.sort(function sortNames(a,b) {
+// 		return a.name.localeCompare(b.name)
+// 	});
+// 	var findArr = sortedArr.find(function getId(arrId){
+// 		return arrId.id == studentId
+// 	})
+// 	console.log(` ${findArr.name} (${findArr.id}): ${findArr.paid == true ? "Paid" : "Not Paid"}`)
+// 	return findArr
+// }
 function printRecords(recordIds) {
-  // TODO
+	const printRecord = recordIds.map(function studentsId(id) {
+		return studentRecords.find(function findRecord(record){
+			return record.id === id 
+		})
+	}).filter(function(record){
+		return record != null
+	})
+
+	const sortedRecord = printRecord.sort(function sortNames(a,b){
+		return a.name.localeCompare(b.name)
+	})
+	sortedRecord.forEach(function printRecord(record) {
+    console.log(
+      `${record.name} (${record.id}): ${record.paid ? "Paid" : "Not Paid"}`
+    );
+  });
+	return sortedRecord
 }
 
 function paidStudentsToEnroll() {
@@ -22,7 +38,7 @@ function remindUnpaid(recordIds) {
 
 // ********************************
 
-var currentEnrollment = [410, 105, 664, 375];
+var currentEnrollment = [410, 105, 664, 375,999];
 
 var studentRecords = [
   { id: 313, name: "Frank", paid: true },
@@ -39,10 +55,10 @@ var studentRecords = [
 printRecords(currentEnrollment);
 console.log("----");
 currentEnrollment = paidStudentsToEnroll();
-printRecords(currentEnrollment);
-console.log("----");
-remindUnpaid(currentEnrollment);
-var result = getStudentFromIds(313, studentRecords);
+// printRecords(currentEnrollment);
+// console.log("----");
+// remindUnpaid(currentEnrollment);
+// var result = getStudentFromIds(313, studentRecords);
 // console.log(result);
 
 /*
